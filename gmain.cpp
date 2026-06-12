@@ -2,15 +2,16 @@
 
 void gmain()
 {
+	//windowをつくる
 	window(1920, 1080, full);
-	
+	//ゲームループ
 	repeat()
 	{
+		//背景描画
 		background(0, 0, 0);
-
-		//info
-		print((let)"width:" + width + " height:" + height);
-		print((let)"mouseX:" + (int)mouseX + " mouseY:" + (int)mouseY);
-		print((let)"delta:" + delta);
+		//情報描画
+		print_f("width:%.f height:%.f", width, height);
+		print_f("mouseX:%.f mouseY:%.f", mouseX, mouseY);
+		print_f("delta:%.3f", delta);
 	}
 }
