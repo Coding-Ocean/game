@@ -1,16 +1,16 @@
 ﻿#include"libOne.h"
-
+#include"game.h"
+#include"draw.h"
 void gmain()
 {
-	window(1920, 1080);
-	
+	window(1920, 1080, full);
+	struct DATA d;
 	repeat()
 	{
-		background(0, 0, 0);
 
-		//info
-		print((let)"w:" + width + " h:" + height);
-		print((let)"x:" + (int)mouseX + " y:" + (int)mouseY);
-		print((let)"delta:" + delta);
+		if (d.state == d.TITLE) { title(&d); }
+		else if (d.state == d.PLAY) { play(&d); }
+		else { over(&d); }
+		draw(&d);
 	}
 }
