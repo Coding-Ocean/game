@@ -1,28 +1,43 @@
 #include"libOne.h"
 #include"game.h"
+#include <cmath>
 void init(struct DATA* d) {
-	d->enemy.px = width / 2;
-	d->enemy.py = 100;
-	d->enemy.vx = 5;
-	d->enemy.vy = 5;
+	d->enemy.px = 0;
+	d->enemy.py = height/2;
+	d->enemy.vx = 8;
+	d->enemy.vy = 8;
 	d->enemy.radius = 200;
+	//発射角度
+	float angle = random(360);
+	d->enemy.vx = cos(angle) * 8;
+	d->enemy.vy = sin(angle) * 8;
+	//ENEMYの最大の大きさ
+	d->enemy.maxSize = 500;
+
+
 	d->player.px = 0;
 	d->player.py = 0;
-	d->player.radius = 200;
-	d->enemy.maxSize = 450;
+	d->player.radius = 300;
+
+	//生き残った時間
+	d->time = 0;
 }
 void title(struct DATA* d) {
 	//画像切り替え
-		init(d);
 	if (isTrigger(MOUSE_LBUTTON)) {
+		init(d);
 		d->state = d->PLAY;
 	}
 }
 
 void play(struct DATA* d) {
 	background(255, 200, 255);
+	//時間の計測
+	d->time += delta;
+	//プレイヤーの動作
 	d->player.px = mouseX;
 	d->player.py = mouseY;
+	//ENEMYの動作
 	d->enemy.px += d->enemy.vx;
 	d->enemy.py += d->enemy.vy;
 	if (d->enemy.px > width - d->enemy.radius / 2) {
@@ -41,26 +56,18 @@ void play(struct DATA* d) {
 		d->enemy.py = 0 + d->enemy.radius / 2;
 		d->enemy.vy *= -1;
 	}
-	if (d->enemy.radius <= d->enemy.maxSize) {
-		d->enemy.radius += 0.05f;
-	}
-	else {
-		if (d->enemy.vx < 0) {
-			d->enemy.vx -= 0.001f;
-		}
-		if (d->enemy.vx > 0) {
-			d->enemy.vx += 0.001f;
-		}
-		if (d->enemy.vy < 0) {
-			d->enemy.vy -= 0.001f;
-		}
-		if (d->enemy.vy > 0) {
-			d->enemy.vy += 0.001f;
-		}
-	}
-	if (collision(d)) {
-		d->state = d->OVER;
-	}
+
+	//サイズの変化
+	if (d->enemy.radius < d->enemy.maxSize) { d->enemy.radius += 0.1f; }
+
+	//速度の変化
+	if (d->enemy.vx > 0) { d->enemy.vx += 0.005f; }
+	else                 { d->enemy.vx -= 0.005f; }
+	if (d->enemy.vy > 0) { d->enemy.vy += 0.005f; }
+	else                 { d->enemy.vy -= 0.005f; }
+	
+	
+	if (collision(d)) { d->state = d->OVER; }
 
 }
 void over(struct DATA* d) {

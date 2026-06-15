@@ -7,7 +7,6 @@ void gmain()
 	struct DATA d;
 	repeat()
 	{
-
 		if (d.state == d.TITLE) { title(&d); }
 		else if (d.state == d.PLAY) { play(&d); }
 		else { over(&d); }
