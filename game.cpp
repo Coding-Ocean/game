@@ -32,7 +32,7 @@ void title(struct DATA* d) {
 
 void play(struct DATA* d) {
 	background(255, 200, 255);
-	//時間の計測
+	//時間の測定
 	d->time += delta;
 	//プレイヤーの動作
 	d->player.px = mouseX;
