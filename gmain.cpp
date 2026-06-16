@@ -3,7 +3,7 @@
 #include"draw.h"
 void gmain()
 {
-	window(1920, 1080, full)
+	window(1920, 1080, full);
 	struct DATA d;
 	repeat()
 	{
