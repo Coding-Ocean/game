@@ -8,9 +8,9 @@ void init(struct DATA* d) {
 	d->enemy.vy = 8;
 	d->enemy.radius = 200;
 	//発射角度
-	float angle = random(360);
-	d->enemy.vx = cos(angle) * 8;
-	d->enemy.vy = sin(angle) * 8;
+	float deg = random(360);
+	d->enemy.vx = cos(deg) * 8;
+	d->enemy.vy = sin(deg) * 8;
 	//ENEMYの最大の大きさ
 	d->enemy.maxSize = 500;
 
