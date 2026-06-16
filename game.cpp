@@ -3,7 +3,7 @@
 #include <cmath>
 void init(struct DATA* d) {
 	d->enemy.px = 0;
-	d->enemy.py = height/2;
+	d->enemy.py = height/2
 	d->enemy.vx = 8;
 	d->enemy.vy = 8;
 	d->enemy.radius = 200;

@@ -1,7 +1,7 @@
 #include"libOne.h"
 #include"game.h"
 void draw(struct DATA* d) {
-	background(255, 200, 255);
+	background(255, 200, 255)
 	if (d->state == d->TITLE) {
 		fill(255, 200, 0);
 		print("TITLE");
